@@ -4,13 +4,23 @@ class CourseDetail extends Component {
 
   constructor() {
     super();
-    this.state = {data: []}
+    this.state = {data: {
+      title: '',
+      description: [],
+      estimatedTime: '',
+      materialsNeeded: []
+    }}
   }
 
   componentDidMount() {
     fetch(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
       .then(res => res.json())
-      .then(data => this.setState({data: data}));
+      .then(data => this.setState({data: {
+        title: data.title,
+        description: data.description.split('\n'),
+        estimatedTime: data.estimatedTime,
+        materialsNeeded: data.materialsNeeded.split('\n')
+      }}));
   }
 
   render() {
@@ -30,7 +40,7 @@ class CourseDetail extends Component {
               <p>By Joe Smith</p>
             </div>
             <div className="course--description">
-              <p>{this.state.data.description}</p>
+              {this.state.data.description.map((p, index) => <p key={index}>{p}</p>)}
             </div>
           </div>
           <div className="grid-25 grid-right">
@@ -43,7 +53,7 @@ class CourseDetail extends Component {
                 <li className="course--stats--list--item">
                   <h4>Materials Needed</h4>
                   <ul>
-                    <li>{this.state.data.materialsNeeded}</li>
+                  {this.state.data.materialsNeeded.map((item, index) => <li key={index}>{item}</li>)}
                   </ul>
                 </li>
               </ul>
