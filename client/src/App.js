@@ -12,6 +12,7 @@ import './App.css';
 import Header from './components/Header';
 import Courses from './components/Courses';
 import CourseDetail from './components/CourseDetail';
+import CreateCourse from './components/CreateCourse';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <hr/>
         <Switch>
           <Route exact path="/" component={Courses} />
+          <Route path="/courses/create" component={CreateCourse} />
           <Route path="/courses/:id" component={CourseDetail} />
         </Switch>
       </Router>

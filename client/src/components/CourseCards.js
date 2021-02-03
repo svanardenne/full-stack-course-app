@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CourseCards = (props) => {
   return(
-    <div className="grid-33"><a className="course--module course--link" href="course-detail.html">
+    <div className="grid-33"><Link className="course--module course--link" to={`/courses/${props.id}`}>
       <h4 className="course--label">Course</h4>
       <h3 className="course--title">{props.title}</h3>
-    </a></div>
+    </Link></div>
   );
 
 }
