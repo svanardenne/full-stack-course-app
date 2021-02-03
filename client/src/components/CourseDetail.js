@@ -9,17 +9,22 @@ class CourseDetail extends Component {
       title: '',
       description: [],
       estimatedTime: '',
-      materialsNeeded: []
+      materialsNeeded: [],
+      user: ''
     }}
   }
 
   componentDidMount() {
+    // Gets course data for a specifc course and adds it to state
     axios.get(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
       .then(data => this.setState({data: {
-        title: data.title,
-        description: data.description.split('\n'),
-        estimatedTime: data.estimatedTime,
-        materialsNeeded: data.materialsNeeded.split('\n')
+        title: data.data.title,
+        description: data.data.description.split('\n'),
+        // Checks to see if there is a time given and sets either the data or a placeholder in state
+        estimatedTime: data.data.estimatedTime ? data.data.estimatedTime : 'Not Stated',
+        // Checks to see if there are materials listed and sets either the data or a placeholder in state
+        materialsNeeded: data.data.materialsNeeded ? data.data.materialsNeeded.split('\n') : 'None Listed',
+        user: `${data.data.User.firstName} ${data.data.User.lastName}`
       }}));
   }
 
@@ -37,7 +42,7 @@ class CourseDetail extends Component {
             <div className="course--header">
               <h4 className="course--label">Course</h4>
               <h3 className="course--title">{this.state.data.title}</h3>
-              <p>By Joe Smith</p>
+              <p>{this.state.data.user}</p>
             </div>
             <div className="course--description">
               {this.state.data.description.map((p, index) => <p key={index}>{p}</p>)}
@@ -53,7 +58,8 @@ class CourseDetail extends Component {
                 <li className="course--stats--list--item">
                   <h4>Materials Needed</h4>
                   <ul>
-                  {this.state.data.materialsNeeded.map((item, index) => <li key={index}>{item}</li>)}
+                  {/* Checks to see if placeholder is being used and uses a ternary operator to either display the placeholder or data */}
+                  {this.state.data.materialsNeeded !== 'None Listed' ? this.state.data.materialsNeeded.map((item, index) => <li key={index}>{item}</li>) : <li>{this.state.data.materialsNeeded}</li>}
                   </ul>
                 </li>
               </ul>
