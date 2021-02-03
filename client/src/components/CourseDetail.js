@@ -23,7 +23,7 @@ class CourseDetail extends Component {
         // Checks to see if there is a time given and sets either the data or a placeholder in state
         estimatedTime: data.data.estimatedTime ? data.data.estimatedTime : 'Not Stated',
         // Checks to see if there are materials listed and sets either the data or a placeholder in state
-        materialsNeeded: data.data.materialsNeeded ? data.data.materialsNeeded.split('\n') : 'None Listed',
+        materialsNeeded: data.data.materialsNeeded ? data.data.materialsNeeded.replace(/[*]/g, '').split('\n') : 'None Listed',
         user: `${data.data.User.firstName} ${data.data.User.lastName}`
       }}));
   }
