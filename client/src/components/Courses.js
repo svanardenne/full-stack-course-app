@@ -19,7 +19,7 @@ class Courses extends Component {
   render() {
     return(
         <div className="bounds">
-          {this.state.data.map(course => <CourseCards title={course.title} />)}
+          {this.state.data.map((course, index) => <CourseCards key={index} title={course.title} />)}
           <div className="grid-33"><a className="course--module course--add--module" href="create-course.html">
             <h3 className="course--add--title"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                 viewBox="0 0 13 13" className="add">
