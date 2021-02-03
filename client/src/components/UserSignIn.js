@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 class UserSignIn extends Component {
+
+  cancel() {
+    
+  }
+
   render() {
     return(
       <div className="bounds">
