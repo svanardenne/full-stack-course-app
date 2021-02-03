@@ -2,6 +2,24 @@ import React, { Component } from 'react';
 
 class CreateCourse extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      title: '',
+      description: '',
+      estimatedTime: '',
+      materialsNeeded: ''
+    }
+  }
+
+  handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    this.setState({
+      [name]: value
+    });
+  }
+
   cancel = (event) => {
     event.preventDefault();
     this.props.history.push('/');
@@ -25,12 +43,17 @@ class CreateCourse extends Component {
             <div className="grid-66">
               <div className="course--header">
                 <h4 className="course--label">Course</h4>
-                <div><input id="title" name="title" type="text" className="input-title course--title--input" placeholder="Course title..."
-                    value="" /></div>
+                <div>
+                  <input id="title" name="title" type="text" className="input-title course--title--input" placeholder="Course title..."
+                    value={this.state.title} onChange={this.handleChange} />
+                </div>
                 <p>By Joe Smith</p>
               </div>
               <div className="course--description">
-                <div><textarea id="description" name="description" className="" placeholder="Course description..."></textarea></div>
+                <div>
+                  <textarea id="description" name="description" className="" placeholder="Course description..." 
+                    value={this.state.description} onChange={this.handleChange}></textarea>
+                </div>
               </div>
             </div>
             <div className="grid-25 grid-right">
@@ -39,11 +62,14 @@ class CreateCourse extends Component {
                   <li className="course--stats--list--item">
                     <h4>Estimated Time</h4>
                     <div><input id="estimatedTime" name="estimatedTime" type="text" className="course--time--input"
-                        placeholder="Hours" value="" /></div>
+                        placeholder="Hours" value={this.state.estimatedTime} onChange={this.handleChange} /></div>
                   </li>
                   <li className="course--stats--list--item">
                     <h4>Materials Needed</h4>
-                    <div><textarea id="materialsNeeded" name="materialsNeeded" className="" placeholder="List materials..."></textarea></div>
+                    <div>
+                      <textarea id="materialsNeeded" name="materialsNeeded" className="" placeholder="List materials..." 
+                        value={this.state.materialsNeeded} onChange={this.handleChange}></textarea>
+                    </div>
                   </li>
                 </ul>
               </div>
