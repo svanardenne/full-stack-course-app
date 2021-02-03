@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class CourseDetail extends Component {
 
@@ -13,8 +14,7 @@ class CourseDetail extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
-      .then(res => res.json())
+    axios.get(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
       .then(data => this.setState({data: {
         title: data.title,
         description: data.description.split('\n'),
