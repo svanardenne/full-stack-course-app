@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 
 class UpdateCourse extends Component {
+
+  cancel = (event) => {
+    event.preventDefault();
+    this.props.history.push('/');
+  }
+
   render() {
     return(
       <div className="bounds course--detail">
@@ -33,7 +39,10 @@ class UpdateCourse extends Component {
               </ul>
             </div>
           </div>
-          <div className="grid-100 pad-bottom"><button className="button" type="submit">Update Course</button><button className="button button-secondary" onclick="event.preventDefault(); location.href='course-detail.html';">Cancel</button></div>
+          <div className="grid-100 pad-bottom">
+            <button className="button" type="submit">Update Course</button>
+            <button className="button button-secondary" onClick={this.cancel}>Cancel</button>
+          </div>
         </form>
       </div>
     </div>
