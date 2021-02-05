@@ -27,13 +27,34 @@ class UserSignUp extends Component {
     });
   }
 
+  submit = (event) => {
+    event.preventDefault();
+    if(this.state.password === this.state.confirmPassword) {
+      const {
+        firstName,
+        lastName,
+        emailAddress,
+        password
+      } = this.state;
+      const user = {
+        firstName,
+        lastName,
+        emailAddress,
+        password
+      };
+      console.log(JSON.stringify(user));
+      this.props.createUser(JSON.stringify(user));
+    }
+
+  }
+
   render() {
     return(
       <div className="bounds">
         <div className="grid-33 centered signin">
           <h1>Sign Up</h1>
           <div>
-            <form>
+            <form onSubmit={this.submit}>
               <div>
                 <input id="firstName" name="firstName" type="text" className="" placeholder="First Name" value={this.state.firstName} onChange={this.handleChange} />
               </div>

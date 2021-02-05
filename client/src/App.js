@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom';
+import axios from 'axios';
 
 // Import CSS
 import './App.css';
@@ -19,24 +20,34 @@ import UserSignUp from './components/UserSignUp';
 import UserSignOut from './components/UserSignOut';
 
 
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <Header />
-        <hr/>
-        <Switch>
-          <Route exact path="/" component={Courses} />
-          <Route path="/courses/create" component={CreateCourse} />
-          <Route path="/courses/:id/update" component={UpdateCourse} />
-          <Route path="/courses/:id" component={CourseDetail} />
-          <Route path="/signin" component={UserSignIn} />
-          <Route path="/signup" component={UserSignUp} />
-          <Route path="/signout" component={UserSignOut} />
-        </Switch>
-      </Router>
-    </div>
-  );
+class App extends Component {
+
+  async createUser(user) {
+    await axios.post('http://localhost:5000/api/users', user, {headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+    }});
+    this.history.push('/');
+  }
+
+  render() {
+    return(
+      <div className="App">
+        <Router>
+          <Header />
+          <hr/>
+          <Switch>
+            <Route exact path="/" component={Courses} />
+            <Route path="/courses/create" component={CreateCourse} />
+            <Route path="/courses/:id/update" component={UpdateCourse} />
+            <Route path="/courses/:id" component={CourseDetail} />
+            <Route path="/signin" component={UserSignIn} />
+            <Route path="/signup" render={(props) => <UserSignUp {...props} createUser={this.createUser} />} />
+            <Route path="/signout" component={UserSignOut} />
+          </Switch>
+        </Router>
+      </div>
+    );
+  };
 }
 
 export default App;
