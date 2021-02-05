@@ -20,7 +20,7 @@ class UserSignUp extends Component {
   }
 
   submit = (event) => {
-    event.preventDefault();
+    const { context } = this.props;
     if(this.state.password === this.state.confirmPassword) {
       const {
         firstName,
@@ -34,7 +34,7 @@ class UserSignUp extends Component {
         emailAddress,
         password
       };
-      this.props.createUser(user);
+      context.data.createUser(user);
     } else {
       console.log("passwords need to match")
     }
