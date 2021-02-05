@@ -1,6 +1,6 @@
 import config from './config';
 
-class Data {
+class UserData {
   api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
     const url = config.apiBaseUrl + path;
     const options = {
@@ -35,4 +35,4 @@ class Data {
   }
 }
 
-export default Data;
+export default UserData;

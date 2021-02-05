@@ -34,7 +34,7 @@ class UserSignUp extends Component {
         emailAddress,
         password
       };
-      context.data.createUser(user);
+      context.userData.createUser(user);
     } else {
       console.log("passwords need to match")
     }

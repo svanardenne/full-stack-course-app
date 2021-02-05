@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Data from './Data';
+import UserData from './Data';
 
 const Context = React.createContext();
 
@@ -7,12 +7,12 @@ export class Provider extends Component {
   
   constructor() {
     super();
-    this.data = new Data();
+    this.userData = new UserData();
   }
 
   render() {
     const value = {
-      data: this.data
+      userData: this.userData
     }
 
     return(
