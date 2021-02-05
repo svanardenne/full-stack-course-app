@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 
 class UpdateCourse extends Component {
 
+  state = {
+    title: '',
+    description: '',
+    estimatedTime: '',
+    materialsNeeded: ''
+  }
+
   cancel = (event) => {
     event.preventDefault();
     this.props.history.push('/');

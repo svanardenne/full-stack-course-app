@@ -3,21 +3,13 @@ import { Link } from 'react-router-dom';
 
 class UserSignUp extends Component {
 
-  constructor() {
-    super();
-    this.state = {
+  state = {
       firstName: '',
       lastName: '',
       emailAddress: '',
       password: '',
       confirmPassword: ''
     }
-  }
-
-  cancel = (event) => {
-    event.preventDefault();
-    this.props.history.push('/');
-  }
 
   handleChange = (event) => {
     const name = event.target.name;
@@ -47,6 +39,11 @@ class UserSignUp extends Component {
       console.log("passwords need to match")
     }
 
+  }
+
+  cancel = (event) => {
+    event.preventDefault();
+    this.props.history.push('/');
   }
 
   render() {

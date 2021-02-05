@@ -5,10 +5,7 @@ import CourseCards from './CourseCards';
 
 class Courses extends Component {
 
-  constructor() {
-    super();
-    this.state = {data: []}
-  }
+  state = {data: []}
 
   componentDidMount() {
     fetch('http://localhost:5000/api/courses')

@@ -5,13 +5,10 @@ import axios from 'axios';
 
 class CourseDetail extends Component {
 
-  constructor() {
-    super();
-    this.state = {
+  state = {
       data: {},
       user: {}
     }
-  }
 
   componentDidMount() {
     // Gets course data for a specifc course and adds it to state

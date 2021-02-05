@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 
 class CreateCourse extends Component {
 
-  constructor() {
-    super();
-    this.state = {
+  state = {
       title: '',
       description: '',
       estimatedTime: '',
       materialsNeeded: ''
     }
-  }
 
   handleChange = (event) => {
     const name = event.target.name;
