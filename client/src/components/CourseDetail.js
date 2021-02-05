@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
+import config from '../config';
 
 class CourseDetail extends Component {
 
@@ -12,7 +13,7 @@ class CourseDetail extends Component {
 
   componentDidMount() {
     // Gets course data for a specifc course and adds it to state
-    axios.get(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
+    axios.get(`${config.apiBaseUrl}/courses/${this.props.match.params.id}`)
       .then(data => this.setState({data: data.data, user: data.data.User}));
   }
 

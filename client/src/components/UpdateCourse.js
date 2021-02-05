@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import config from '../config';
 
 class UpdateCourse extends Component {
 
@@ -10,7 +11,7 @@ class UpdateCourse extends Component {
 
   componentDidMount() {
     // Gets course data for a specifc course and adds it to state
-    axios.get(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
+    axios.get(`${config.apiBaseUrl}/courses/${this.props.match.params.id}`)
       .then(data => this.setState({data: data.data, user: data.data.User}));
   }
 
