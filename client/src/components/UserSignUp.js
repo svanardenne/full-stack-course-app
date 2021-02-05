@@ -42,8 +42,9 @@ class UserSignUp extends Component {
         emailAddress,
         password
       };
-      console.log(JSON.stringify(user));
-      this.props.createUser(JSON.stringify(user));
+      this.props.createUser(user);
+    } else {
+      console.log("passwords need to match")
     }
 
   }
