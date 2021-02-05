@@ -4,6 +4,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import axios from 'axios';
 
 // Import CSS
@@ -21,6 +22,10 @@ import UserSignOut from './components/UserSignOut';
 
 
 class App extends Component {
+
+  state = {
+    authenticatedUser: Cookies.getJSON('authenticatedUser') || null
+  }
 
   async createUser(user) {
     await axios.post('http://localhost:5000/api/users', user, {headers: {
