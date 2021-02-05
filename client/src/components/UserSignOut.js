@@ -1,10 +1,10 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-const UserSignUp =  () => {
+const UserSignOut =  () => {
   return (
     <Redirect to="/" />
   );
 }
 
-export default UserSignUp;
+export default UserSignOut;
