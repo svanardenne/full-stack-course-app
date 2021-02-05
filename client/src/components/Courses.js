@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import config from '../config';
 
 import CourseCards from './CourseCards';
 
@@ -8,9 +10,8 @@ class Courses extends Component {
   state = {data: []}
 
   componentDidMount() {
-    fetch('http://localhost:5000/api/courses')
-      .then(res => res.json())
-      .then(data => this.setState({data: data}));
+    axios.get(`${config.apiBaseUrl}/courses`)
+      .then(data => this.setState({data: data.data}));
 
   }
 
