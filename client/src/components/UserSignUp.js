@@ -8,7 +8,8 @@ class UserSignUp extends Component {
       lastName: '',
       emailAddress: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      errors: []
     }
 
   handleChange = (event) => {
@@ -20,6 +21,7 @@ class UserSignUp extends Component {
   }
 
   submit = (event) => {
+    event.preventDefault();
     const { context } = this.props;
     if(this.state.password === this.state.confirmPassword) {
       const {
@@ -34,16 +36,46 @@ class UserSignUp extends Component {
         emailAddress,
         password
       };
-      context.userData.createUser(user);
+      context.userData.createUser(user)
+        .then( errors => {
+          if (errors.length) {
+            this.setState({ errors });
+          } else {
+            console.log(`${emailAddress} is successfully signed up and authenticated!`);
+          }
+        })
+        .catch(err => { // Handle rejected promises
+          console.log(err);
+          this.props.history.push('/error'); // push to history stack
+        });
     } else {
-      console.log("passwords need to match")
+      this.setState({errors: [
+        ...this.state.errors,
+        "Passwords need to match"
+      ]});
     }
-
   }
 
   cancel = (event) => {
     event.preventDefault();
     this.props.history.push('/');
+  }
+
+  ErrorsDisplay = ({ errors }) => {
+    let errorsDisplay = null;
+    if (errors.length) {
+      errorsDisplay = (
+        <div>
+          <h2 className="validation--errors--label">Validation errors</h2>
+          <div className="validation-errors">
+            <ul>
+              {errors.map((error, i) => <li key={i}>{error}</li>)}
+            </ul>
+          </div>
+        </div>
+      )
+    }
+    return errorsDisplay;
   }
 
   render() {
@@ -53,6 +85,7 @@ class UserSignUp extends Component {
           <h1>Sign Up</h1>
           <div>
             <form onSubmit={this.submit}>
+              <this.ErrorsDisplay errors={this.state.errors} />
               <div>
                 <input id="firstName" name="firstName" type="text" className="" placeholder="First Name" value={this.state.firstName} onChange={this.handleChange} />
               </div>
