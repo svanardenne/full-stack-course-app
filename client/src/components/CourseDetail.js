@@ -22,7 +22,16 @@ class CourseDetail extends Component {
       <div>
         <div className="actions--bar">
           <div className="bounds">
-            <div className="grid-100"><span><Link className="button" to={`/courses/${this.props.match.params.id}/update`}>Update Course</Link><a className="button" href="#">Delete Course</a></span>
+            <div className="grid-100">
+              {
+              this.props.context.authenticatedUser 
+              && this.props.context.authenticatedUser.id === this.props.match.params.id -1
+              ? 
+              <span><Link className="button" to={`/courses/${this.props.match.params.id}/update`}>Update Course</Link>
+              <a className="button" href="#">Delete Course</a></span>
+              :
+              null
+              }
             <Link className="button button-secondary" to="/">Return to List</Link></div>
           </div>
         </div>
