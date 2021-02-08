@@ -53,7 +53,7 @@ export class Provider extends Component {
   }
 
   // Sign-out method
-  signOut = async (emailAddress, password) => {
+  signOut = async () => {
     this.setState(() => {
       return {
         authenticatedUser: null
