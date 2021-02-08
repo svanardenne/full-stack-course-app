@@ -49,7 +49,7 @@ class UserSignUp extends Component {
         })
         .catch(err => { // Handle rejected promises
           console.log(err);
-          this.props.history.push('/error'); // push to history stack
+          this.props.history.push('/error'); // push error to history stack
         });
     } else {
       this.setState({errors: [

@@ -15,14 +15,22 @@ class UserData {
 
     // Check if auth is required
     if (requiresAuth) {
-      const encodedCredentials = btoa(`${credentials.username}:${credentials.password}`);
+      const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
       options.headers['Authorization'] = `Basic ${encodedCredentials}`;
     }
     return fetch(url, options);
   }
 
-  async getUser() {
-    
+  async getUser(emailAddress, password) {
+    const response = await this.api('/users', 'GET', null, true, { emailAddress, password });
+    if (response.status === 200) {
+      return response.json().then(data => data);
+    }
+    else if (response.status === 401) {
+      return null;
+    } else {
+      throw new Error();
+    }
   }
 
   async createUser(user) {
