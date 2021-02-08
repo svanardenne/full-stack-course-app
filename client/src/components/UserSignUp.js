@@ -12,6 +12,7 @@ class UserSignUp extends Component {
       errors: []
     }
 
+  // Handles value change in input fields
   handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -20,6 +21,7 @@ class UserSignUp extends Component {
     });
   }
 
+  // Submit Handler
   submit = (event) => {
     event.preventDefault();
     const { context } = this.props;
@@ -36,6 +38,7 @@ class UserSignUp extends Component {
         emailAddress,
         password
       };
+      // Calls createUser() from data passed to context
       context.userData.createUser(user)
         .then( errors => {
           if (errors.length) {
@@ -56,11 +59,13 @@ class UserSignUp extends Component {
     }
   }
 
+  // Cancel button handler
   cancel = (event) => {
     event.preventDefault();
     this.props.history.push('/');
   }
 
+  // Displays validation errors
   ErrorsDisplay = ({ errors }) => {
     let errorsDisplay = null;
     if (errors.length) {
