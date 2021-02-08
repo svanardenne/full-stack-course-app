@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import config from '../config';
 
 class CreateCourse extends Component {
 
@@ -15,6 +16,25 @@ class CreateCourse extends Component {
     this.setState({
       [name]: value
     });
+  }
+
+  submit = (event) => {
+    event.preventDefault();
+    const { context } = this.props;
+    const authUser = context.authenticatedUser;
+    console.log(authUser)
+    const encodedCredentials = btoa(`${authUser.email}:${authUser.password}`);
+    const url = config.apiBaseUrl + '/courses';
+    const options = {
+      body: JSON.stringify(this.state),
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Authorization': `Basic ${encodedCredentials}`
+      }
+    };
+    console.log(options);
+    fetch(url, options);
   }
 
   cancel = (event) => {
@@ -36,7 +56,7 @@ class CreateCourse extends Component {
               </ul>
             </div>
           </div>
-          <form>
+          <form onSubmit={this.submit}>
             <div className="grid-66">
               <div className="course--header">
                 <h4 className="course--label">Course</h4>
