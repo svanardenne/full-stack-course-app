@@ -46,7 +46,7 @@ export class Provider extends Component {
           authenticatedUser: user
         };
       });
-      // Set Cookie
+      // Set Cookie for authenticated user
       Cookies.set('authenticatedUser', JSON.stringify(user), { expires: 1 });
     }
     return user;
@@ -59,6 +59,7 @@ export class Provider extends Component {
         authenticatedUser: null
       }
     });
+    // Remove Cookie on logout
     Cookies.remove('authenticatedUser');
 }
 }
