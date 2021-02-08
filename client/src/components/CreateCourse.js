@@ -22,7 +22,6 @@ class CreateCourse extends Component {
     event.preventDefault();
     const { context } = this.props;
     const authUser = context.authenticatedUser;
-    console.log(authUser)
     const encodedCredentials = btoa(`${authUser.email}:${authUser.password}`);
     const url = config.apiBaseUrl + '/courses';
     const options = {
@@ -33,7 +32,6 @@ class CreateCourse extends Component {
         'Authorization': `Basic ${encodedCredentials}`
       }
     };
-    console.log(options);
     fetch(url, options);
   }
 
