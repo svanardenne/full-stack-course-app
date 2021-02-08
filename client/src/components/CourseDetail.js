@@ -23,6 +23,8 @@ class CourseDetail extends Component {
         <div className="actions--bar">
           <div className="bounds">
             <div className="grid-100">
+              {/* Conditionally renders the delete and update buttons based on
+              whether the right user is signed in */}
               {
               this.props.context.authenticatedUser 
               && this.props.context.authenticatedUser.id === this.props.match.params.id -1
