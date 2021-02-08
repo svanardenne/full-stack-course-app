@@ -23,7 +23,8 @@ export class Provider extends Component {
       authenticatedUser, // Sets user status on value obkect
       userData: this.userData, // Sets user data on value object
       actions: { // Adds handler methods from UserData.js to Context
-        signIn: this.signIn
+        signIn: this.signIn,
+        signOut: this.signOut
       }
     }
 
@@ -47,6 +48,11 @@ export class Provider extends Component {
     }
     return user;
   }
+
+  // Sign-out method
+  signOut = async (emailAddress, password) => {
+    this.setState({ authenticatedUser: null });
+}
 }
 
 export const Consumer = Context.Consumer;

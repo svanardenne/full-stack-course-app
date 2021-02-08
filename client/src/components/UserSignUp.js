@@ -44,7 +44,11 @@ class UserSignUp extends Component {
           if (errors.length) {
             this.setState({ errors });
           } else {
-            console.log(`${emailAddress} is successfully signed up and authenticated!`);
+            // Signs new user in and redirects them to main page
+            context.actions.signIn(emailAddress, password)
+              .then(() => {
+                this.props.history.push('/');
+              });
           }
         })
         .catch(err => { // Handle rejected promises
