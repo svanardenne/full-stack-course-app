@@ -27,7 +27,7 @@ class CourseDetail extends Component {
               whether the right user is signed in */}
               {
               this.props.context.authenticatedUser 
-              && this.props.context.authenticatedUser.id === this.props.match.params.id -1
+              && this.props.context.authenticatedUser.id === this.state.user.id
               ? 
               <span><Link className="button" to={`/courses/${this.props.match.params.id}/update`}>Update Course</Link>
               <a className="button" href="#">Delete Course</a></span>

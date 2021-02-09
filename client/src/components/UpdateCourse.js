@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import config from '../config';
+import { Redirect } from 'react-router';
 
 class UpdateCourse extends Component {
 
   state = {
-    data: {},
-    user: {}
+    data: {
+      title: '',
+      description: '',
+      estimatedTime: '',
+      materialsNeeded: ''
+    },
+    user: {},
   }
 
   componentDidMount() {
@@ -20,9 +26,28 @@ class UpdateCourse extends Component {
     const value = event.target.value;
     this.setState({
       data: {
+        ...this.state.data,
         [name]: value
       }
     });
+  }
+
+  submit = (event) => {
+    event.preventDefault();
+    const { context } = this.props;
+    const authUser = context.authenticatedUser;
+    const encodedCredentials = btoa(`${authUser.email}:${authUser.password}`);
+    const url = config.apiBaseUrl + `/courses/${this.props.match.params.id}`;
+    const options = {
+      body: JSON.stringify(this.state.data),
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Authorization': `Basic ${encodedCredentials}`
+      }
+    };
+    fetch(url, options);
+    this.props.history.push(`/courses/${this.props.match.params.id}`);
   }
 
   cancel = (event) => {
@@ -35,7 +60,7 @@ class UpdateCourse extends Component {
       <div className="bounds course--detail">
       <h1>Update Course</h1>
       <div>
-        <form>
+        <form onSubmit={this.submit}>
           <div className="grid-66">
             <div className="course--header">
               <h4 className="course--label">Course</h4>
