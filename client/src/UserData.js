@@ -1,6 +1,7 @@
 import config from './config';
 
 class UserData {
+  // General method used to send requests for user data
   api(path, method = 'GET', body = null, requiresAuth = false, credentials = null) {
     const url = config.apiBaseUrl + path;
     const options = {
@@ -21,6 +22,7 @@ class UserData {
     return fetch(url, options);
   }
 
+  // Gets the user
   async getUser(emailAddress, password) {
     const response = await this.api('/users', 'GET', null, true, { emailAddress, password });
     if (response.status === 200) {
@@ -33,6 +35,7 @@ class UserData {
     }
   }
 
+  // Creates a new User
   async createUser(user) {
     const response = await this.api('/users', 'POST', user);
     if (response.status === 201) {

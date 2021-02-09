@@ -40,6 +40,7 @@ class UpdateCourse extends Component {
       });
   }
 
+  // Handles input value changes
   handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -51,6 +52,7 @@ class UpdateCourse extends Component {
     });
   }
 
+  // Handles form submission
   submit = (event) => {
     event.preventDefault();
     const { context } = this.props;

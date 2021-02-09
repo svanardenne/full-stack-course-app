@@ -26,6 +26,7 @@ class CourseDetail extends Component {
       });
   }
 
+  // Deletes the current course
   delete = () => {
     const result = window.confirm("Are you sure you want to delete this course?");
     if (result) {

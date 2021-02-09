@@ -11,6 +11,7 @@ class CreateCourse extends Component {
       errors: []
     }
 
+  // Handles input value changes
   handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -19,6 +20,7 @@ class CreateCourse extends Component {
     });
   }
 
+  // Handles the form submission
   submit = (event) => {
     event.preventDefault();
     const { context } = this.props;

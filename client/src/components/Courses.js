@@ -10,6 +10,7 @@ class Courses extends Component {
   state = {data: []}
 
   componentDidMount() {
+    // Grabs course data to display
     axios.get(`${config.apiBaseUrl}/courses`)
       .then(data => this.setState({data: data.data}))
       .catch(err => { // Handle rejected promises
