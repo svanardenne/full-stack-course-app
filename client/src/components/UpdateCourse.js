@@ -90,8 +90,8 @@ class UpdateCourse extends Component {
       <div className="bounds course--detail">
       <h1>Update Course</h1>
       <div>
+      {<this.ErrorsDisplay errors={this.state.errors} />}
         <form onSubmit={this.submit}>
-          {<this.ErrorsDisplay errors={this.state.errors} />}
           <div className="grid-66">
             <div className="course--header">
               <h4 className="course--label">Course</h4>

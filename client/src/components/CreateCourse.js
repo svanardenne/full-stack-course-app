@@ -7,7 +7,8 @@ class CreateCourse extends Component {
       title: '',
       description: '',
       estimatedTime: '',
-      materialsNeeded: ''
+      materialsNeeded: '',
+      errors: []
     }
 
   handleChange = (event) => {
@@ -32,7 +33,20 @@ class CreateCourse extends Component {
         'Authorization': `Basic ${encodedCredentials}`
       }
     };
-    fetch(url, options);
+    fetch(url, options)
+      .then(data => {
+        if (data.status === 201) {
+          this.props.history.push('/');
+        } else if (data.status === 400) {
+          return data.json().then(data => {
+            this.setState({errors: data.errors});
+          });
+        }
+      })
+      .catch(err => { // Handle rejected promises
+        console.log(err);
+        this.props.history.push('/error'); // push error to history stack
+      });
   }
 
   cancel = (event) => {
@@ -40,21 +54,32 @@ class CreateCourse extends Component {
     this.props.history.push('/');
   }
 
+  // Displays validation errors
+  ErrorsDisplay = ({ errors }) => {
+    let errorsDisplay = null;
+    if (errors.length) {
+      errorsDisplay = (
+        <div>
+          <h2 className="validation--errors--label">Validation errors</h2>
+          <div className="validation-errors">
+            <ul>
+              {errors.map((error, i) => <li key={i}>{error}</li>)}
+            </ul>
+          </div>
+        </div>
+      )
+    }
+    return errorsDisplay;
+  }
+
   render() {
     return(
       <div className="bounds course--detail">
         <h1>Create Course</h1>
         <div>
-          <div>
-            <h2 className="validation--errors--label">Validation errors</h2>
-            <div className="validation-errors">
-              <ul>
-                <li>Please provide a value for "Title"</li>
-                <li>Please provide a value for "Description"</li>
-              </ul>
-            </div>
-          </div>
+        {<this.ErrorsDisplay errors={this.state.errors} />}
           <form onSubmit={this.submit}>
+
             <div className="grid-66">
               <div className="course--header">
                 <h4 className="course--label">Course</h4>
