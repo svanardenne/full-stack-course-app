@@ -11,7 +11,11 @@ class Courses extends Component {
 
   componentDidMount() {
     axios.get(`${config.apiBaseUrl}/courses`)
-      .then(data => this.setState({data: data.data}));
+      .then(data => this.setState({data: data.data}))
+      .catch(err => { // Handle rejected promises
+        console.log(err);
+        this.props.history.push('/error'); // push error to history stack
+      });
 
   }
 

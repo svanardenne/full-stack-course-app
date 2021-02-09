@@ -27,6 +27,10 @@ class UpdateCourse extends Component {
         } else {
           this.props.history.push('/notfound');
         }
+      })
+      .catch(err => { // Handle rejected promises
+        console.log(err);
+        this.props.history.push('/error'); // push error to history stack
       });
   }
 
@@ -68,7 +72,7 @@ class UpdateCourse extends Component {
         } else if (data.status === 403 || data.status === 401) {
           return data.json().then(data => {
             this.props.history.push({pathname: '/forbidden', state: {message: data.error}})
-          })
+          });
         }
       })
       .catch(err => { // Handle rejected promises

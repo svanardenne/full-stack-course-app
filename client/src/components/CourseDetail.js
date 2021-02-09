@@ -51,6 +51,10 @@ class CourseDetail extends Component {
               this.props.history.push({pathname: '/forbidden', state: {message: data.error}})
             });
           }
+        })
+        .catch(err => { // Handle rejected promises
+          console.log(err);
+          this.props.history.push('/error'); // push error to history stack
         });
     }
   }
