@@ -19,7 +19,7 @@ class Courses extends Component {
     return(
         <div className="bounds">
           {/* Iterates over state data to create a card for each item returned from the database */}
-          {this.state.data.map((course, index) => <CourseCards key={index} title={course.title} id={index + 1} />)}
+          {this.state.data.map((course, index) => <CourseCards key={index} title={course.title} id={course.id} />)}
           <div className="grid-33"><Link className="course--module course--add--module" to="/courses/create">
             <h3 className="course--add--title"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                 viewBox="0 0 13 13" className="add">

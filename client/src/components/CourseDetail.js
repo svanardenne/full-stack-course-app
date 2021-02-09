@@ -17,7 +17,7 @@ class CourseDetail extends Component {
       .then(data => this.setState({data: data.data, user: data.data.User}));
   }
 
-  delete = (event) => {
+  delete = () => {
     const { context } = this.props;
     const authUser = context.authenticatedUser;
     const encodedCredentials = btoa(`${authUser.email}:${authUser.password}`);
