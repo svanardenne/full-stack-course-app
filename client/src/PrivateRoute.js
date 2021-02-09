@@ -9,7 +9,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         <Route
           {...rest}
           // Checks to see if there is an authenticated user and
-          // renders either the component passed tto it in App,js or
+          // renders either the component passed to it in App,js or
           // redirects to the sign-in page
           render={props => context.authenticatedUser ? (
             <Component {...props} />

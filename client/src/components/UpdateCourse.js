@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import config from '../config';
-import { Redirect } from 'react-router';
 
 class UpdateCourse extends Component {
 

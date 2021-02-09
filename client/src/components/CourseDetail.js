@@ -17,6 +17,20 @@ class CourseDetail extends Component {
       .then(data => this.setState({data: data.data, user: data.data.User}));
   }
 
+  delete = (event) => {
+    const { context } = this.props;
+    const authUser = context.authenticatedUser;
+    const encodedCredentials = btoa(`${authUser.email}:${authUser.password}`);
+    const url = config.apiBaseUrl + `/courses/${this.props.match.params.id}`;
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Basic ${encodedCredentials}`
+      }
+    };
+    fetch(url, options);
+  }
+
   render() {
     return(
       <div>
@@ -30,7 +44,7 @@ class CourseDetail extends Component {
               && this.props.context.authenticatedUser.id === this.state.user.id
               ? 
               <span><Link className="button" to={`/courses/${this.props.match.params.id}/update`}>Update Course</Link>
-              <a className="button" href="#">Delete Course</a></span>
+              <button className="button" onClick={this.delete}>Delete Course</button></span>
               :
               null
               }
