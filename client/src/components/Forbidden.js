@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Forbidden = () => {
+const Forbidden = (props) => {
   return(
-    <div class="bounds">
+    <div className="bounds">
       <h1>Forbidden</h1>
-      <p>Oh oh! You can't access this page.</p>
+      <p>{props.location.state.message}</p>
     </div>
   );
 }

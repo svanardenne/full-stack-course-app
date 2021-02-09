@@ -63,6 +63,13 @@ class UpdateCourse extends Component {
           return data.json().then(data => {
             this.setState({errors: data.errors});
           });
+          // If user not the author of course data,
+          // return errors and redirect to "/forbidden" with location state prop
+        } else if (data.status === 403 || data.status === 401) {
+          return data.json().then(data => {
+            this.props.history.push({pathname: '/forbidden', state: {message: data.error}})
+          })
+          
         }
       })
       .catch(err => { // Handle rejected promises
