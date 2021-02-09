@@ -14,7 +14,16 @@ class CourseDetail extends Component {
   componentDidMount() {
     // Gets course data for a specifc course and adds it to state
     axios.get(`${config.apiBaseUrl}/courses/${this.props.match.params.id}`)
-      .then(data => this.setState({data: data.data, user: data.data.User}));
+      .then(data => {
+        // Checks to see if data was returned;
+        // If true, sets data in state
+        // If not, pushes to "/notfound" route
+        if (data.data) {
+          this.setState({data: data.data, user: data.data.User})
+        } else {
+          this.props.history.push('/notfound');
+        }
+      });
   }
 
   delete = () => {
