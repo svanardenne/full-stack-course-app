@@ -18,17 +18,22 @@ class CourseDetail extends Component {
   }
 
   delete = () => {
-    const { context } = this.props;
-    const authUser = context.authenticatedUser;
-    const encodedCredentials = btoa(`${authUser.email}:${authUser.password}`);
-    const url = config.apiBaseUrl + `/courses/${this.props.match.params.id}`;
-    const options = {
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Basic ${encodedCredentials}`
-      }
-    };
-    fetch(url, options);
+    const result = window.confirm("Are you sure you want to delete this course?");
+    if (result) {
+      const { context } = this.props;
+      const authUser = context.authenticatedUser;
+      const encodedCredentials = btoa(`${authUser.email}:${authUser.password}`);
+      const url = config.apiBaseUrl + `/courses/${this.props.match.params.id}`;
+      const options = {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Basic ${encodedCredentials}`
+        }
+      };
+      fetch(url, options);
+    }
+    alert('Course deleted');
+    this.props.history.push('/');
   }
 
   render() {
