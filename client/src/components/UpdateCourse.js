@@ -69,7 +69,6 @@ class UpdateCourse extends Component {
           return data.json().then(data => {
             this.props.history.push({pathname: '/forbidden', state: {message: data.error}})
           })
-          
         }
       })
       .catch(err => { // Handle rejected promises

@@ -39,10 +39,20 @@ class CourseDetail extends Component {
           'Authorization': `Basic ${encodedCredentials}`
         }
       };
-      fetch(url, options);
+      fetch(url, options)
+        .then(data => {
+          if (data.status === 204) {
+            alert('Course deleted');
+            this.props.history.push('/');
+            // If user not the author of course data,
+            // return errors and redirect to "/forbidden" with location state prop
+          } else if (data.status === 403 || data.status === 401) {
+            return data.json().then(data => {
+              this.props.history.push({pathname: '/forbidden', state: {message: data.error}})
+            });
+          }
+        });
     }
-    alert('Course deleted');
-    this.props.history.push('/');
   }
   
 
