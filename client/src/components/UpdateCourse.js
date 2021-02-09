@@ -19,13 +19,19 @@ class UpdateCourse extends Component {
     // Gets course data for a specifc course and adds it to state
     axios.get(`${config.apiBaseUrl}/courses/${this.props.match.params.id}`)
       .then(data => {
-        // Checks to see if data was returned;
-        // If true, sets data in state
-        // If not, pushes to "/notfound" route
-        if (data.data) {
-          this.setState({data: data.data, user: data.data.User})
+        // If the user does not own the course,
+        // Redirect to "/forbidden" with a message
+        if (data.data.User.id !== this.props.context.authenticatedUser.id) {
+          this.props.history.push({pathname: '/forbidden', state: {message: 'Access Denied'}})
         } else {
-          this.props.history.push('/notfound');
+          // Checks to see if data was returned;
+          // If true, sets data in state
+          // If not, pushes to "/notfound" route
+          if (data.data) {
+            this.setState({data: data.data, user: data.data.User})
+          } else {
+            this.props.history.push('/notfound');
+          }
         }
       })
       .catch(err => { // Handle rejected promises
