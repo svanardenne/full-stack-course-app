@@ -35,6 +35,7 @@ class CourseDetail extends Component {
     alert('Course deleted');
     this.props.history.push('/');
   }
+  
 
   render() {
     return(

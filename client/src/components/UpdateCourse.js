@@ -12,6 +12,7 @@ class UpdateCourse extends Component {
       materialsNeeded: ''
     },
     user: {},
+    errors: []
   }
 
   componentDidMount() {
@@ -45,13 +46,43 @@ class UpdateCourse extends Component {
         'Authorization': `Basic ${encodedCredentials}`
       }
     };
-    fetch(url, options);
-    this.props.history.push(`/courses/${this.props.match.params.id}`);
+    fetch(url, options)
+      .then(data => {
+        if (data.status === 204) {
+          this.props.history.push(`/courses/${this.props.match.params.id}`);
+        } else if (data.status === 400) {
+          return data.json().then(data => {
+            this.setState({errors: data.errors});
+          });
+        }
+      })
+      .catch(err => { // Handle rejected promises
+        console.log(err);
+        this.props.history.push('/error'); // push error to history stack
+      });
   }
 
   cancel = (event) => {
     event.preventDefault();
     this.props.history.push('/');
+  }
+
+  // Displays validation errors
+  ErrorsDisplay = ({ errors }) => {
+    let errorsDisplay = null;
+    if (errors.length) {
+      errorsDisplay = (
+        <div>
+          <h2 className="validation--errors--label">Validation errors</h2>
+          <div className="validation-errors">
+            <ul>
+              {errors.map((error, i) => <li key={i}>{error}</li>)}
+            </ul>
+          </div>
+        </div>
+      )
+    }
+    return errorsDisplay;
   }
 
   render() {
@@ -60,6 +91,7 @@ class UpdateCourse extends Component {
       <h1>Update Course</h1>
       <div>
         <form onSubmit={this.submit}>
+          {<this.ErrorsDisplay errors={this.state.errors} />}
           <div className="grid-66">
             <div className="course--header">
               <h4 className="course--label">Course</h4>
