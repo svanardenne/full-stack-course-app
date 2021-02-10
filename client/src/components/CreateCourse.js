@@ -54,6 +54,7 @@ class CreateCourse extends Component {
       });
   }
 
+  // Handles cancel button
   cancel = (event) => {
     event.preventDefault();
     this.props.history.push('/');
