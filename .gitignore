@@ -43,6 +43,9 @@ client/node_modules
 node_modules/
 jspm_packages/
 
+# Database
+/api/fsjstd-restapi.db
+
 # TypeScript v1 declaration files
 typings/
 
