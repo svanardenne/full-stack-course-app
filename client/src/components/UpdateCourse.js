@@ -36,7 +36,7 @@ class UpdateCourse extends Component {
       })
       .catch(err => { // Handle rejected promises
         console.log(err);
-        this.props.history.push('/error'); // push error to history stack
+        this.props.history.push('/notfound'); // push error to history stack
       });
   }
 
@@ -81,6 +81,9 @@ class UpdateCourse extends Component {
           return data.json().then(data => {
             this.props.history.push({pathname: '/forbidden', state: {message: data.error}})
           });
+          // Redirects to "/error" on status of 500
+        } else if (data.status === 500) {
+          this.props.history.push('/error');
         }
       })
       .catch(err => { // Handle rejected promises

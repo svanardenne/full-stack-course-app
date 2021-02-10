@@ -43,6 +43,9 @@ class CreateCourse extends Component {
           return data.json().then(data => {
             this.setState({errors: data.errors});
           });
+          // Redirects to "/error" on status of 500
+        } else if (data.status === 500) {
+          this.props.history.push('/error');
         }
       })
       .catch(err => { // Handle rejected promises
