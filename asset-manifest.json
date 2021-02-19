@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/full-stack-course-app/static/css/main.ec86e5a5.chunk.css",
+    "main.js": "/full-stack-course-app/static/js/main.00deb2b5.chunk.js",
+    "main.js.map": "/full-stack-course-app/static/js/main.00deb2b5.chunk.js.map",
+    "runtime-main.js": "/full-stack-course-app/static/js/runtime-main.d2775c76.js",
+    "runtime-main.js.map": "/full-stack-course-app/static/js/runtime-main.d2775c76.js.map",
+    "static/js/2.d821243f.chunk.js": "/full-stack-course-app/static/js/2.d821243f.chunk.js",
+    "static/js/2.d821243f.chunk.js.map": "/full-stack-course-app/static/js/2.d821243f.chunk.js.map",
+    "index.html": "/full-stack-course-app/index.html",
+    "static/css/main.ec86e5a5.chunk.css.map": "/full-stack-course-app/static/css/main.ec86e5a5.chunk.css.map",
+    "static/js/2.d821243f.chunk.js.LICENSE.txt": "/full-stack-course-app/static/js/2.d821243f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d2775c76.js",
+    "static/js/2.d821243f.chunk.js",
+    "static/css/main.ec86e5a5.chunk.css",
+    "static/js/main.00deb2b5.chunk.js"
+  ]
+}
