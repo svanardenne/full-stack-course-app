@@ -1,5 +1,5 @@
 const config = {
-  apiBaseUrl: 'http://localhost:5000/api',
+  apiBaseUrl: 'http://mysterious-sierra-13055.herokuapp.com/api',
 };
 
 export default config;
