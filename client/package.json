@@ -1,6 +1,6 @@
 {
-  "homepage": "https://svanardenne.github.io/full-stack-course-app/",
-  "name": "client",
+  "homepage": "https://svanardenne.github.io/full-stack-course-app",
+  "name": "full-stack-course-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
