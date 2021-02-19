@@ -36,7 +36,7 @@ const CourseDetailWithContext = withContext(CourseDetail);
 
 const App = () => {
   return(
-    <Router>
+    <Router basename="/full-stack-course-app">
       <div className="App">
         <HeaderWithContext />
         <hr/>
