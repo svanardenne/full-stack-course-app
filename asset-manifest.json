@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/full-stack-course-app/static/css/main.ec86e5a5.chunk.css",
-    "main.js": "/full-stack-course-app/static/js/main.bfc02a58.chunk.js",
-    "main.js.map": "/full-stack-course-app/static/js/main.bfc02a58.chunk.js.map",
+    "main.js": "/full-stack-course-app/static/js/main.68029a29.chunk.js",
+    "main.js.map": "/full-stack-course-app/static/js/main.68029a29.chunk.js.map",
     "runtime-main.js": "/full-stack-course-app/static/js/runtime-main.64b6b28e.js",
     "runtime-main.js.map": "/full-stack-course-app/static/js/runtime-main.64b6b28e.js.map",
     "static/js/2.7c0ac3e7.chunk.js": "/full-stack-course-app/static/js/2.7c0ac3e7.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.64b6b28e.js",
     "static/js/2.7c0ac3e7.chunk.js",
     "static/css/main.ec86e5a5.chunk.css",
-    "static/js/main.bfc02a58.chunk.js"
+    "static/js/main.68029a29.chunk.js"
   ]
 }
