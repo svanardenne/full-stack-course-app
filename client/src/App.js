@@ -36,7 +36,7 @@ const CourseDetailWithContext = withContext(CourseDetail);
 
 const App = () => {
   return(
-    <Router basename="/">
+    <Router basename={process.env.PUBLIC_URL}>
       <div className="App">
         <HeaderWithContext />
         <hr/>
