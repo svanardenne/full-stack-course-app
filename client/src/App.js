@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   Switch
 } from 'react-router-dom';
@@ -36,7 +36,7 @@ const CourseDetailWithContext = withContext(CourseDetail);
 
 const App = () => {
   return(
-    <Router basename="/full-stack-course-app">
+    <Router>
       <div className="App">
         <HeaderWithContext />
         <hr/>
