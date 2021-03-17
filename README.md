@@ -12,4 +12,4 @@ The user is able to create an account, log in, and create, update and view cours
 ## To Run
  * run ```npm start``` in both the api and client folders and go to "http://localhost:3000" in your broswer.
 
-## [Live Site](https://www.shaunvanardenne.ca/full-stack-course-app)
+## [Live Site](https://shaunvanardenne.ca/full-stack-course-app)
