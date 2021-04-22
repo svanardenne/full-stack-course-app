@@ -5,8 +5,8 @@ The user is able to create an account, log in, and create, update and view cours
 
 ## To Install
 * Download the files
-* Go to the api folder and run ```npm install``` followed by ```npm start``` to install and load database. 
-* Then run ```npm run seed``` to install dependancies and seed database.
+* Go to the api folder and run ```npm install``` to install api dependancies.
+* Then run ```npm run seed``` to seed database.
 * Go to the client folder and run ```npm install``` to install client dependancies.
 
 ## To Run
